@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { VictoryPie, VictoryTheme } from "victory";
 import styles from "./Stats.module.css"
 import Publication from "../Publication/Publication";
+import Jw from "../Jw/Jw";
 
 export default function Stats(){
     const [totalGeral,setTotalGeral] = React.useState(0)
@@ -63,6 +64,7 @@ export default function Stats(){
                     theme={VictoryTheme.clean}
                     />
                 </div>
+                <Jw/>
             </div>
         </div>
     )

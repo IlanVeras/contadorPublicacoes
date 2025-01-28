@@ -1,6 +1,6 @@
 .stats {
     display: grid;
-    grid-template-columns: 1.3fr 2fr; /* Segunda coluna 2x maior */
+    grid-template-columns: 1.5fr 2fr; /* Segunda coluna 2x maior */
     height: 100vh; /* Define altura total */
     grid-template-rows: auto 1fr; /* Primeira linha (info) é dinâmica e segunda (graficos) ocupa o restante */
 }

@@ -1,3 +1,14 @@
+.container{
+    /* display: inline; */
+}
+
 .input{
-    display: inline;
+    border: none;
+    padding: 1rem;
+    margin-bottom: 1px;
+    font-size: 1rem;
+}
+
+.codeForm {
+    border-bottom: 1px solid #333;
 }

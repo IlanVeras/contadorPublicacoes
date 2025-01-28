@@ -1,6 +1,7 @@
 import React from "react"
 import Input from "../Input/Input"
 import { useNavigate } from "react-router-dom"
+import styles from "./Table.module.css"
 
 
 export default function Table(){
@@ -53,7 +54,7 @@ export default function Table(){
     return(
         <section>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className={styles.containerForm}>
                     {
                         rows.map((row,index) => (
                             <div key={index}>
@@ -62,6 +63,7 @@ export default function Table(){
                                 title="publicação"
                                 value={row.publicacao}
                                 onChange={(e) => handleChange(e,index,'publicacao')}
+                                backColor="#98cdff"
                                 />
                                 <Input
                                 type="text"
@@ -70,13 +72,14 @@ export default function Table(){
                                 <Input
                                 type="number"
                                 title="total"
-                                onChange={(e) => handleChange(e,index, 'total')}/>
-                                <span onClick={() => handleMinus(index)}>X</span>
+                                onChange={(e) => handleChange(e,index, 'total')}
+                                backColor="#98cdff"/>
+                                <span onClick={() => handleMinus(index)} className={styles.apagar}>X</span>
                             </div>
                         ))
                     }
                 </div>
-                <button>Enviar</button>
+                <button className={styles.btn}>Enviar</button>
             </form>
             <div><button onClick={handleMore}>+</button></div>
         </section>

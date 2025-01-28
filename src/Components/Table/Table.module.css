@@ -1,0 +1,20 @@
+.containerForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+}
+
+
+.apagar {
+    /* background-color: red; */
+    /* color: white; */
+    font-size: 1.5rem;
+    padding: 10px;
+    cursor: pointer;
+    margin-left: auto;  /* Empurra o "X" para a direita */
+}
+
+.btn {
+    width: 100%;
+    border: none;
+    font-size: 1.5rem;
+}
