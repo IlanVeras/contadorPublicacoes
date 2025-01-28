@@ -5,26 +5,20 @@ import { useNavigate } from "react-router-dom"
 
 export default function Table(){
     //contante estado que seta como os objetos dentro do seu array devem ser estruturados
-    const [rows,setRows] = React.useState([
-        {publicacao:"",codigo:"",total:0}
-    ])
+    const [rows,setRows] = React.useState([{ publicacao: "", codigo: "", total: 0 }])
     const navigate = useNavigate()
 
-    React.useEffect(() => {
+
+
+    //fução que envia dados e..
+    function handleSubmit(e){
+        e.preventDefault()
         const rowsLowered = rows.map((row) => ({
             ...row,
             publicacao: row.publicacao.toLowerCase(),
             codigo: row.codigo.toLowerCase()
         }))
         localStorage.setItem('dados',JSON.stringify(rowsLowered))
-    },[rows])
-
-
-    //fução que envia dados e..
-    function handleSubmit(e){
-        console.log(rows)
-        e.preventDefault()
-        console.log("Salvo")
         //leva para a página de estatísticas
         navigate("/stats")
     }
@@ -49,6 +43,11 @@ export default function Table(){
         const updatedRows = [...rows]
         updatedRows.splice(index,1) //remove uma linha específica
         setRows(updatedRows)
+    }
+
+    function handleClearAll(){
+        setRows([{ publicacao: "", codigo: "", total: 0 }])
+        localStorage.removeItem("dados")
     }
 
     return(

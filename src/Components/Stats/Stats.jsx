@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { VictoryPie, VictoryTheme } from "victory";
 import styles from "./Stats.module.css"
+import Publication from "../Publication/Publication";
 
 export default function Stats(){
     const [totalGeral,setTotalGeral] = React.useState(0)
@@ -22,11 +23,13 @@ export default function Stats(){
                 }
                 return 0
             }))
-            console.log(dataAlfa)
-            setDataGraph(dataAlfa.map(({publicacao,total}) => ({
-                x:publicacao,
-                y:total
-            })))
+            const dadosTransformados = dados.map((item) => ({
+                x: item.publicacao, // Rótulo (label)
+                y: parseInt(item.total, 10), // Valor (numérico)
+              }));
+            setDataGraph(dadosTransformados)
+            console.log("DataGraph")    
+            console.log(dataGraph)          
         }
         getData()
     },[])
@@ -35,18 +38,20 @@ export default function Stats(){
     function handleBack(){
         navigate('/')
     }
+
+    function capitalizeFirstLetter(val) {
+        return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+    }
     return(
         <div>
-                        {/* <p onClick={handleBack}>Voltar</p>
-                        <h1>Estatísticas</h1> */}
             <div className={styles.stats}>
                 <div className={styles.info}>
-                    <p>Total geral de publicações: {totalGeral}</p>
+                    <div className={styles.totG}>
+                        <p>Total geral de publicações: <b>{totalGeral}</b></p>
+                    </div>
                     {
                         dataAlfa.map((publi) => (
-                            <div>
-                                Publicação: {publi.publicacao} - Quantidade: {publi.total}
-                            </div>
+                            <Publication publi={capitalizeFirstLetter(publi.publicacao)} code={publi.codigo} quantidade={publi.total} className={styles.paragraphPubli}/>
                         ))
                     }
                 </div>

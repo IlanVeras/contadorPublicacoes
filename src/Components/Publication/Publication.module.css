@@ -1,0 +1,13 @@
+.container{
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+}
+.publiName{
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.codePubli{
+    font-size: 0.9rem;
+    color: #333;
+}
