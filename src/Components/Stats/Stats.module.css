@@ -1,0 +1,24 @@
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Segunda coluna 2x maior */
+    height: 100vh; /* Define altura total */
+    grid-template-rows: auto 1fr; /* Primeira linha (info) é dinâmica e segunda (graficos) ocupa o restante */
+}
+
+.info {
+    background-color: grey;
+    padding: 1rem;
+    height: auto; /* A altura cresce de acordo com o conteúdo */
+    overflow-y: auto; /* Adiciona rolagem caso necessário */
+    height: 100vh;
+}
+
+.graficos {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: flex-start; /* Alinha ao topo */
+    width: 100%; /* 100% da largura da coluna */
+    max-width: 45rem; /* Limita o tamanho máximo */
+    height: 30rem; /* Define uma altura fixa para o gráfico */
+    margin-top: 0; /* Garante que o gráfico fique no topo */
+}

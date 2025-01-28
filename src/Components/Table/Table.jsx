@@ -1,22 +1,32 @@
 import React from "react"
 import Input from "../Input/Input"
+import { useNavigate } from "react-router-dom"
+
 
 export default function Table(){
     //contante estado que seta como os objetos dentro do seu array devem ser estruturados
     const [rows,setRows] = React.useState([
         {publicacao:"",codigo:"",total:0}
     ])
+    const navigate = useNavigate()
 
     React.useEffect(() => {
-        localStorage.setItem('dados',JSON.stringify(rows))
+        const rowsLowered = rows.map((row) => ({
+            ...row,
+            publicacao: row.publicacao.toLowerCase(),
+            codigo: row.codigo.toLowerCase()
+        }))
+        localStorage.setItem('dados',JSON.stringify(rowsLowered))
     },[rows])
 
 
     //fução que envia dados e..
     function handleSubmit(e){
+        console.log(rows)
         e.preventDefault()
         console.log("Salvo")
-        //..guarda eles no localStorage
+        //leva para a página de estatísticas
+        navigate("/stats")
     }
 
     //função que muda o valor do elemento Input
