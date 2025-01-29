@@ -1,0 +1,13 @@
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+}
+.apagar{
+    background-color: red;
+    margin: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+}

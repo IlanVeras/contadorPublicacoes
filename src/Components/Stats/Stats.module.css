@@ -38,3 +38,42 @@
 .paragraphPubli{
 
 }
+
+
+@media (max-width: 40rem){
+    .stats {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media print {
+    /* Garantir que as cores de fundo sejam preservadas */
+    body {
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+
+    /* Ajuste adicional para garantir que as divs e cores sejam mantidas */
+    .container, .btnSend, .stats {
+        color: black; /* Garantir que o texto tenha boa visibilidade */
+    }
+    
+    /* Se necessário, remova elementos que não são necessários na versão impressa */
+    .no-print {
+        display: none;
+    }
+}
+
+
+@media print {
+    #stats-container {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .stats {
+        height: 100%;
+        page-break-inside: avoid; /* Evitar quebras de página dentro da div */
+    }
+}

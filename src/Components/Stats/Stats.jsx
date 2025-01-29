@@ -1,6 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { VictoryPie, VictoryTheme } from "victory";
+import {jsPDF} from "jspdf";
+import html2canvas from "html2canvas";
 import styles from "./Stats.module.css"
 import Publication from "../Publication/Publication";
 import Jw from "../Jw/Jw";
@@ -9,10 +10,11 @@ export default function Stats(){
     const [totalGeral,setTotalGeral] = React.useState(0)
     const [dataAlfa,seDataAlfa] = React.useState([])
     const [dataGraph,setDataGraph] = React.useState([])
+    const [isDataLoaded,setIsDataLoaded] = React.useState(false)
+
     React.useEffect(() => {
         async function getData() {
             const dados = await JSON.parse(localStorage.getItem("dados"))
-            console.log(dados)
             const totalG = dados.reduce((acc,obj) => acc + Number(obj.total), 0)
             setTotalGeral(totalG)
             seDataAlfa(dados.sort((a,b) => {
@@ -29,22 +31,23 @@ export default function Stats(){
                 y: parseInt(item.total, 10), // Valor (numérico)
               }));
             setDataGraph(dadosTransformados)
-            console.log("DataGraph")    
-            console.log(dataGraph)          
+            setIsDataLoaded(true)       
         }
         getData()
     },[])
-    const navigate = useNavigate()
 
-    function handleBack(){
-        navigate('/')
-    }
+    React.useEffect(() => {
+        function baixarPDF(){
+            window.print()
+        }
+        baixarPDF()
+    },[])
 
     function capitalizeFirstLetter(val) {
         return String(val).charAt(0).toUpperCase() + String(val).slice(1);
     }
     return(
-        <div>
+        <div id="stats-container">
             <div className={styles.stats}>
                 <div className={styles.info}>
                     <div className={styles.totG}>
@@ -52,7 +55,8 @@ export default function Stats(){
                     </div>
                     {
                         dataAlfa.map((publi) => (
-                            <Publication publi={capitalizeFirstLetter(publi.publicacao)} code={publi.codigo} quantidade={publi.total} className={styles.paragraphPubli}/>
+                            <Publication publi={capitalizeFirstLetter(publi.publicacao)} code={publi.codigo} quantidade={publi.total} className={styles.paragraphPubli}
+                            />
                         ))
                     }
                 </div>

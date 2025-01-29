@@ -1,14 +1,11 @@
-.container{
-    /* display: inline; */
-}
 
 .input{
-    border: none;
-    padding: 1rem;
-    margin-bottom: 1px;
+    width: 100%;
+    border: 1px solid transparent;
     font-size: 1rem;
+    padding: 10px;
 }
 
-.codeForm {
-    border-bottom: 1px solid #333;
+.input:focus{
+    border-color:red;
 }

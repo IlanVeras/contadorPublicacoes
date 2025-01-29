@@ -1,12 +1,9 @@
-import React from "react"
-import Input from "../Input/Input"
-import { useNavigate } from "react-router-dom"
-import styles from "./Table.module.css"
+import React from "react";
+import styles from "./Teste.module.css"
+import Input from "./Input/Input";
 
-
-export default function Table(){
+export default function Teste(){
     const [rows,setRows] = React.useState([{ publicacao: "", codigo: "", total: 0 }])
-    const navigate = useNavigate()
 
     //fução que envia dados e..
     function handleSubmit(e){
@@ -43,23 +40,23 @@ export default function Table(){
         setRows(updatedRows)
     }
 
-    // function handleClearAll(){
-    //     setRows([{ publicacao: "", codigo: "", total: 0 }])
-    //     localStorage.removeItem("dados")
-    // }
+    function handleClearAll(){
+        setRows([{ publicacao: "", codigo: "", total: 0 }])
+        localStorage.removeItem("dados")
+    }
     
     return(
-        <div className={styles.container}>
+        <div>
             <form onSubmit={handleSubmit}>
                 {
                             rows.map((row,index) => (
-                                <div key={index} className={styles.table}>
+                                <div key={index} className={styles.container}>
                                     <Input
                                     type="text"
                                     title="publicação"
                                     value={row.publicacao}
                                     onChange={(e) => handleChange(e,index,'publicacao')}
-                                    backColor="#c6e3ff"
+                                    backColor="#98cdff"
                                     />
                                     <Input
                                     type="text"
@@ -69,14 +66,14 @@ export default function Table(){
                                     type="number"
                                     title="total"
                                     onChange={(e) => handleChange(e,index, 'total')}
-                                    backColor="#c6e3ff"/>
+                                    backColor="#98cdff"/>
                                     <span onClick={() => handleMinus(index)} className={styles.apagar}>X</span>
                                 </div>
                             ))
                     }
-                    <button className={styles.btnSend}>Enviar</button>
+                    <button className={styles.btn}>Enviar</button>
             </form>
-            <div className={styles.containerBtnMore}><button onClick={handleMore} className={styles.btnMore}>+</button></div>
+            <div><button onClick={handleMore}>+</button></div>
         </div>
     )
 }
