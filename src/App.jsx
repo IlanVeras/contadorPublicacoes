@@ -4,7 +4,7 @@ import Input from './Components/Input/Input'
 import Table from './Components/Table/Table'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Stats from './Components/Stats/Stats'
-import Teste from './Components/Teste'
+import NotFound from './Components/Helper/NotFound/NotFound'
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Table/>}/>
         <Route path="/stats" element={<Stats/>}/>
-        <Route path='/teste' element={<Teste/>}/>
+        <Route path='/*' element={<NotFound/>}/>
       </Routes>
     </BrowserRouter>
   )
