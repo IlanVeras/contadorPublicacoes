@@ -12,6 +12,7 @@
     grid-template-columns: 1fr 1fr 1fr auto;
     border-bottom: 1.5px solid #feee;
     margin-bottom: 0.5rem;
+    transition: all 0.2s ease-in-out;
 }
 .apagar{
     background-color: red;
@@ -25,7 +26,7 @@
 }
 
 .btnSend{
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     width: 100%;
     margin-top: 1rem;
     border: none;
@@ -37,18 +38,16 @@
 }
 
 .btnMore{
-    font-size: 5rem;
-    width: 6rem;
-    height: 6rem;
-    border-radius: 100%;
-    position: absolute;
-    bottom: 15%;
-    right: 10%;
-    border: none;
-    background-color: rgb(0, 132, 255);
-    color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-    transition: all 0.2s ease-in-out;
+    font-size: 1.4rem;
+    border: 2px solid rgb(0, 132, 255);
+    border-radius: 5px;
+    background-color: white;
+    color: rgb(0, 132, 255);
+    text-align: center;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.219);
+    padding: 5px;
+    margin-top: 1rem;
+    /* transition: all 0.2s ease-in-out; */
 }
 
 .btnMore:active {
