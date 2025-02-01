@@ -1,15 +1,33 @@
-import React from "react"
-import Input from "../Input/Input"
+import React, { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import styles from "./Table.module.css"
-import Header from "../Helper/Header/Header"
+import styles from "./Teste.module.css"
+import Header from "./Components/Helper/Header/Header"
+import Input from "./Components/Input/Input"
 
 
-export default function Table(){
+
+export default function Teste(){
     const [rows,setRows] = React.useState([{ publicacao: "", codigo: "", total: 0 }])
-    const d = localStorage.getItem("dados")
-    console.log(d)
     const navigate = useNavigate()
+
+    /*Problemas:
+    1 nem todos os dados do local storage aparecem automáticamnte*/
+
+    //função de efeito que recupera dados da planilha
+    React.useEffect(() => {
+        function handleStorage(){
+            const d = JSON.parse(localStorage.getItem("dados"))
+            const f = d.map((item) => ({
+                ...item,
+                total: Number(item.total)
+            }))
+            console.log(f)
+            if(f){
+                setRows(f)
+            }
+        }
+        handleStorage()
+    },[])
 
     //fução que envia dados e..
     function handleSubmit(e){
@@ -69,19 +87,21 @@ export default function Table(){
                                         <Input
                                         type="text"
                                         title="código"
+                                        value={row.codigo}
                                         onChange={(e) => handleChange(e,index,'codigo')}/>
                                         <Input
                                         type="number"
                                         title="total"
+                                        value={row.total}
                                         onChange={(e) => handleChange(e,index, 'total')}
                                         backColor="#c6e3ff"/>
                                         <span onClick={() => handleMinus(index)} className={styles.apagar}>X</span>
                                     </div>
                                 ))
                         }
-                        <button className={styles.btnSend}>Enviar</button>
+                        <div onClick={handleMore} className={styles.btnMore}>Adicionar</div>
+                        <button className={styles.btnSend} type="submit">Enviar</button>
                 </form>
-                <div className={styles.containerBtnMore}><button onClick={handleMore} className={styles.btnMore}>+</button></div>
             </div>
         </div>
     )

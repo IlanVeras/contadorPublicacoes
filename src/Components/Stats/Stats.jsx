@@ -16,7 +16,9 @@ export default function Stats(){
         async function getData() {
             const dados = await JSON.parse(localStorage.getItem("dados"))
             const totalG = dados.reduce((acc,obj) => acc + Number(obj.total), 0)
+            //total geral
             setTotalGeral(totalG)
+            //dados em ordem alfabética
             seDataAlfa(dados.sort((a,b) => {
                 if(a.publicacao < b.publicacao){
                     return -1
@@ -26,6 +28,7 @@ export default function Stats(){
                 }
                 return 0
             }))
+            //dados para o gráfico
             const dadosTransformados = dados.map((item) => ({
                 x: item.publicacao, // Rótulo (label)
                 y: parseInt(item.total, 10), // Valor (numérico)
@@ -38,7 +41,15 @@ export default function Stats(){
 
     React.useEffect(() => {
         function baixarPDF(){
-            window.print()
+            const data = localStorage.getItem("dados")
+            if(data){
+                setTimeout(() => {
+                    console.log(window.location)
+                    if(window.location.pathname === '/stats'){
+                        window.print()
+                    }
+                },2000)
+            }
         }
         baixarPDF()
     },[])
