@@ -71,14 +71,6 @@ export default function Stats(){
                         ))
                     }
                 </div>
-                <div className={styles.graficos}>
-                    <VictoryPie
-                    innerRadius={50}
-                    padAngle={5}
-                    data={dataGraph}
-                    theme={VictoryTheme.clean}
-                    />
-                </div>
                 <Jw/>
             </div>
         </div>
